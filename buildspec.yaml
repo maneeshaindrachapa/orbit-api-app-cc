@@ -28,4 +28,4 @@ phases:
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
       - docker push $IMAGE_REPO_NAME:$CODEBUILD_RESOLVED_SOURCE_VERSION
       - kubectl get pods
-      - "helm install -f orbit-api-app/env/$ENV-values.yaml orbit-api-app orbit-api-app/ --set env.containers.image=$IMAGE_REPO_NAME:$CODEBUILD_RESOLVED_SOURCE_VERSION"
+      - "helm upgrade -f orbit-api-app/env/$ENV-values.yaml orbit-api-app orbit-api-app/ --set env.containers.image=$IMAGE_REPO_NAME:$CODEBUILD_RESOLVED_SOURCE_VERSION"
